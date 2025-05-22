@@ -17,7 +17,7 @@ void setup()
 
 void loop()
 {
-  // Update display repeatedly for persistence of vision
+  // Update display
   for (int i = 0; i < 50; i++) {
     WriteNumberToSegment(0, (counter / 1000) % 10);
     WriteNumberToSegment(1, (counter / 100) % 10);
