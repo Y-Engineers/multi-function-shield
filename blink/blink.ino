@@ -23,9 +23,7 @@ public:
     pinMode(pin, INPUT_PULLUP);
   }
 
-  bool isPressed() {
-    return digitalRead(pin) == LOW;
-  }
+  bool isPressed() { return digitalRead(pin) == LOW; }
 };
 
 // LEDs on pins 13, 12, 11, 10
@@ -71,12 +69,16 @@ void chaseBackward() {
 
 void outsideIn() {
   // 011: Outside-in blink
-  leds[0].on(); leds[3].on();
+  leds[0].on();
+  leds[3].on();
   delay(200);
-  leds[0].off(); leds[3].off();
-  leds[1].on(); leds[2].on();
+  leds[0].off();
+  leds[3].off();
+  leds[1].on();
+  leds[2].on();
   delay(200);
-  leds[1].off(); leds[2].off();
+  leds[1].off();
+  leds[2].off();
 }
 
 void pingPong() {
@@ -107,9 +109,11 @@ void snake() {
 
 void all() {
   // 110: All blink together
-  for (int i = 0; i < numLeds; i++) leds[i].on();
+  for (int i = 0; i < numLeds; i++)
+    leds[i].on();
   delay(300);
-  for (int i = 0; i < numLeds; i++) leds[i].off();
+  for (int i = 0; i < numLeds; i++)
+    leds[i].off();
   delay(300);
 }
 
@@ -123,6 +127,11 @@ void randomFlicker() {
 }
 
 void setup() {
+  Serial.begin(9600); // Beginn serial
+  delay(500); // Time for Serial to connect
+  Serial.println(F("Onboard LED Blinking"));
+  Serial.end(); // End serial
+
   randomSeed(analogRead(0)); // Seed for random pattern
 }
 

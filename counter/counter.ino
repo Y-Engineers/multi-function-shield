@@ -8,15 +8,18 @@ const byte SEGMENT_SELECT[] = {0xF1,0xF2,0xF4,0xF8};
 unsigned int counter = 0;
 unsigned long lastUpdate = 0;
 
-void setup()
-{
+void setup() {
+  Serial.begin(9600); // Beginn serial
+  delay(500); // Time for Serial to connect
+  Serial.println(F("Counter"));
+  Serial.end(); // End serial
+
   pinMode(LATCH_DIO, OUTPUT);
   pinMode(CLK_DIO, OUTPUT);
   pinMode(DATA_DIO, OUTPUT);
 }
 
-void loop()
-{
+void loop() {
   // Update display
   for (int i = 0; i < 50; i++) {
     WriteNumberToSegment(0, (counter / 1000) % 10);
